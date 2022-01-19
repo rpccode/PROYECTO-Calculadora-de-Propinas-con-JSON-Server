@@ -41,8 +41,15 @@ function guardarCliente() {
             }
 
 
+            //Asgnar datos del formulario al cliente
+            
+            Cliente ={...Cliente,mesa,hora}
+
+            //ocultar modal
+            const modalFormulario = document.querySelector("#formulario");
+            const modalBoostrap = bootstrap.Modal.getInstance(modalFormulario);
+            modalBoostrap.hide();
 
             
-
 
 }
