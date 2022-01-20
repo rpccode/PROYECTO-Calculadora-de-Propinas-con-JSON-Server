@@ -66,10 +66,31 @@ function obtenerPlatillos(){
 
     fetch(url)
             .then(response => response.json())
-            .then( datos => mostrarInfomacion(datos))
+            .then( datos => mostrarPlatillos(datos))
             .catch( error => console.error(error));
             
 
+}
+function mostrarPlatillos( platillos){
+    const contenido = document.querySelector('#platillos .contenido');
+
+    platillos.forEach( platillo =>{
+
+        const row = document.createElement('div');
+        row.classList.add('row');
+
+
+        const nombre = document.createElement('div');
+        nombre.classList.add('col-md-4');
+        nombre.textContent = platillo.nombre;
+
+
+        row.appendChild(nombre);
+        contenido.appendChild(row);
+
+
+
+    })
 }
 
 function mostrarSecciones(){
