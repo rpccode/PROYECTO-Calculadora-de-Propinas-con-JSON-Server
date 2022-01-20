@@ -53,6 +53,23 @@ function guardarCliente() {
             //Mostrar Secciones
             mostrarSecciones();
 
+
+            //obtener platllos de la api de json server
+            
+            obtenerPlatillos();
+
+}
+
+function obtenerPlatillos(){
+    const url = '  http://localhost:4000/platillos';
+
+
+    fetch(url)
+            .then(response => response.json())
+            .then( datos => mostrarInfomacion(datos))
+            .catch( error => console.error(error));
+            
+
 }
 
 function mostrarSecciones(){
