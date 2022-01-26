@@ -163,7 +163,10 @@ function agregarPlatillo(producto){
             }
             
     }else{
-
+            //Elmnar Resultados cuando el input sea 0
+            const  resultado = pedido.filter( articulo => articulo.id !== producto.id)
+            Cliente.pedido = [...resultado];
+            
     }            
-    console.log(Cliente.pedido);
+    
 }
