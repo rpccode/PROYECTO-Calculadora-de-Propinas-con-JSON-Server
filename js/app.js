@@ -134,5 +134,14 @@ function mostrarSecciones(){
         seccionesOcultas.forEach( section => section.classList.remove('d-none'));
 }
 function agregarPlatillo(producto){
-            console.log(producto);
+    //estraer el pedido actual
+    let {pedido} = Cliente;
+
+    // verificar que la cantidad sea mayor a 0
+    if (producto.cantidad > 0) {
+            Cliente.pedido = [...pedido,producto]
+    }else{
+
+    }            
+    console.log(Cliente.pedido);
 }
