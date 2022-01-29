@@ -127,7 +127,7 @@ function mostrarPlatillos( platillos){
 
 
     })
-}
+};
 
 function mostrarSecciones(){
         const seccionesOcultas = document.querySelectorAll('.d-none');
@@ -242,13 +242,23 @@ function actualizarResumen(){
                         precioE.classList.add('fw-normal');
                         precioE.textContent = `$${precio}`;
 
-                        const subTotalEL = document.createElement('p');
+             const subTotalEL = document.createElement('p');
                         subTotalEL.classList.add('fw-bold');
                        subTotalEL.textContent = 'Sub Total: ';
             const subTotalValor = document.createElement('span');
                         subTotalValor.classList.add('fw-normal');
                        subTotalValor.textContent =calcularSubTotal(precio , cantidad);
-            
+
+                       //boton eliminar 
+                        const  btnEliminar = document.createElement('button');
+                        btnEliminar.classList.add('btn','btn-danger');
+                        btnEliminar.textContent = 'Eliminar del Pedido';
+
+                        //funcion para eliminar del pedido 
+                        btnEliminar.onclick= function(){
+                                        eliminarProducto(id);
+                        }
+
 
                         //agregar valores a sus contenedores para
                         cantidaEL.appendChild(cantidaValor);
@@ -262,6 +272,7 @@ function actualizarResumen(){
                         lista.appendChild(cantidaEL);
                         lista.appendChild(precioEL);
                         lista.appendChild(subTotalEL);
+                        lista.appendChild(btnEliminar);
 
                         
                         
@@ -280,7 +291,9 @@ function actualizarResumen(){
 
      contenido.appendChild(resumen);
 
-}
+};
+
+
 
 function limpiarHtml(){
     const contenido = document.querySelector('#resumen .contenido');
@@ -289,9 +302,22 @@ function limpiarHtml(){
     while(contenido.firstChild){
         contenido.removeChild(contenido.firstChild)
     }
-}
+};
 function calcularSubTotal(precio, cantidad){
      return  `$ ${precio * cantidad}`;
-}
+};
 
+function eliminarProducto(id){
+    const {pedido} = Cliente;
+
+      const  resultado = pedido.filter( articulo => articulo.id !== id)
+            Cliente.pedido = [...resultado];
+
+            //limpiar el html previo
+        limpiarHtml();
+
+    //mostrar Resumen
+
+    actualizarResumen();
+};
 
