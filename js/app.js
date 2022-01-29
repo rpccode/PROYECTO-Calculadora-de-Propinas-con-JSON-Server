@@ -171,9 +171,16 @@ function agregarPlatillo(producto){
     //limpiar el html previo
         limpiarHtml();
 
-    //mostrar Resumen
 
-    actualizarResumen();
+        if (Cliente.pedido.length) {
+                //mostrar Resumen
+ 
+                actualizarResumen();
+        }else{
+                mensajePedidoVacio();
+        }
+
+
 }
 
 function actualizarResumen(){
@@ -316,8 +323,28 @@ function eliminarProducto(id){
             //limpiar el html previo
         limpiarHtml();
 
-    //mostrar Resumen
+    if (Cliente.pedido.length) {
+                //mostrar Resumen
+                actualizarResumen();
+        }else{
+                mensajePedidoVacio();
+        }
 
-    actualizarResumen();
+        //el producto se elimino regresamos el fomulario a 0
+        const productoEliminado = `#producto-${id}`;
+        const inputEliminado = document.querySelector(productoEliminado);
+        inputEliminado.value = 0 ;
+
+
+        console.log(productoEliminado);
 };
+
+function mensajePedidoVacio(){
+    const contenido = document.querySelector('#resumen .contenido');
+     const texto = document.createElement('p');
+     texto.classList.add('text-center');
+     texto.textContent ='Añade los elementos del pedido';
+
+     contenido.appendChild(texto);
+}
 
